@@ -209,6 +209,16 @@ The string data type is used to store a sequence of characters (text). String va
 string greeting = "Hello World";
 Console.WriteLine(greeting);
 */
+//String interpolation
+int a = 4, b = 2, c = 10;
+Console.WriteLine(
+    "First is: " + a + ", second is: " + b + ", third is: " + c);
+
+Console.WriteLine(
+    $"First is: {a}, second is: {b}, third is: {c}");
+
+Console.WriteLine(
+    $"Sum is: {a + b + c}, second is: {b}, third is: {c}");
 
 //TYPE CASTING//
 /*
@@ -283,7 +293,9 @@ i = lng;
 Console.WriteLine("Enter your age:");
 int age = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Your age is: " + age);
-
+//OR//
+string numberAsText = "123";
+int parsedToInt = int.Parse(numberAsText); //would not work if input was, for example, "abc"
 //Note: If you enter wrong input (e.g. text in a numerical input), you will get an exception/error message (like System.FormatException: 'Input string was not in a correct format.').
 
 //OPERATORS//
@@ -447,12 +459,10 @@ Console.WriteLine(lastName5);
 //string txt3 = "We are the so-called "Vikings" from the north.";
 
 //Compiler Error CS1003:
-/*
-Syntax error, 'char' expected
-The compiler will generate this error for any one of several error conditions. 
-Review your code to find the syntax error.
-The following sample generates CS1003:
-// CS1003.cs  
+//Syntax error, 'char' expected
+//The compiler will generate this error for any one of several error conditions. 
+//Review your code to find the syntax error.
+//The following sample generates CS1003:
 public class b
 {
     public static void Main()
@@ -904,10 +914,42 @@ cars = new string[] { "Volvo", "BMW", "Ford" };
 // Add values without using new (this will cause an error)
 //cars = { "Volvo", "BMW", "Ford"};
 
+var numbers = new int[] { 1, 2, 4, 7, 2 };
+numbers[2] = 10;
+var firstFromEnd1 = numbers[numbers.Length - 1];
+var firstFromEnd2 = numbers[^1];
+var secondFromEnd1 = numbers[numbers.Length - 2];
+var secondFromEnd2 = numbers[^2];
+
+int sumOfNumbers = 0;
+for (int i = 0; i < numbers.Length; i++)
+{
+    sumOfNumbers += numbers[i];
+}
+
+
 //Compiler Error CS1525: Invalid expression term 'term'
 //The compiler detected an invalid term in an expression. 
 //This error can be caused by a missing expression where one is expected, leading to subsequent tokens being wrongly parsed as an expression, 
 //or an invalid construct is used within an expression. Common root causes include unmatched tokens, missing semicolon or excess delimiters.
+class MyClass
+{
+    public static void Method(int number) { }
+
+    public static void Main()
+    {
+        int i = 0;
+        i = i + 'c' + 1 + (2);   // OK
+        i = i + void + throw;    // CS1525, these keywords are not valid in this expression
+
+        Method(123,);            // CS1525, excess trailing comma
+
+        goto EmptyLabel;
+    EmptyLabel:              // CS1525, empty label
+        // Add something here to resolve the error, for example:
+        // System.Console.WriteLine("Hello!");
+    }
+}
 
 //Compiler Error CS1002: ; expected
 //The compiler detected a missing semicolon. A semicolon is required at the end of every statement in C#. 
@@ -978,6 +1020,34 @@ Console.WriteLine(i4);
 //To create a 2D array, add each array within its own set of curly braces, and insert a comma(,) inside the square brackets:
 int[,] numbers = { { 1, 4, 2 }, { 3, 6, 8 } };
 
+char[,] letters = new char[2, 3];
+letters[0, 0] = 'A';
+letters[0, 1] = 'B';
+letters[0, 2] = 'C';
+letters[1, 0] = 'D';
+letters[1, 1] = 'E';
+letters[1, 2] = 'F';
+
+var letters2 = new char[,]
+{
+    {'A', 'B','C' },
+    {'D', 'E','F' },
+};
+
+var height = letters.GetLength(0);
+var width = letters.GetLength(1);
+
+for (int i = 0; i < height; i++)
+{
+    Console.WriteLine($"i is {i}");
+    for (int j = 0; j < width; j++)
+    {
+        Console.WriteLine($"j is {j}");
+        Console.WriteLine(
+            $"element is {letters[i, j]}");
+    }
+}
+
 //Good to know: The single comma[,] specifies that the array is two - dimensional.A three-dimensional array would have two commas: int[,,].
 //numbers is now an array with two arrays as its elements.The first array element contains three elements: 1, 4 and 2, while the second array element contains 3, 6 and 8. To visualize it, think of the array as a table with rows and columns:
 //To access an element of a two-dimensional array, you must specify two indexes: one for the array, and one for the element inside that array.Or better yet, with the table visualization in mind; one for the row and one for the column(see example below).
@@ -1011,6 +1081,19 @@ for (int i6 = 0; i6 < numbers4.GetLength(0); i6++)
     }
 }
 
+//LISTS
+var someWords = new List<string>
+{
+    "one", "two"
+};
+someWords.Add("three");
+someWords.AddRange(new[] { "four", "five" });
+someWords.Remove("three");
+someWords.RemoveAt(0);
+var indexOfFive = someWords.IndexOf("five");
+bool containsOne = someWords.Contains("one");
+someWords.Clear();
+
 //METHODS//
 //A method is a block of code which only runs when it is called.
 //You can pass data, known as parameters, into a method.
@@ -1018,8 +1101,8 @@ for (int i6 = 0; i6 < numbers4.GetLength(0); i6++)
 //Why use methods? To reuse code: define the code once, and use it many times.
 //A method is defined with the name of the method, followed by parentheses ().
 //C# provides some pre-defined methods, which you already are familiar with, such as Main(), but you can also create your own methods to perform certain actions:
-//Create a method inside the Program class:
 
+//Create a method inside the Program class:
 //class Program
 //{
 //    static void MyMethod()
@@ -1096,6 +1179,25 @@ static void Main(string[] args)
 // Jenny is 8
 // Anja is 31
 
+//Compiler Error CS1503:
+//Argument 'argument' cannot convert from TypeA to TypeB
+//The type of one argument in a method does not match the type that was passed when the class was instantiated.
+//namespace x
+//{
+//    public class a
+//    {
+//        public a(char i)
+//        // try the following constructor instead
+//        // public a(int i)
+//        {
+//        }
+
+//        public static void Main()
+//        {
+//            a aa = new a(2222);   // CS1503
+//        }
+//    }
+//}
 //Note that when you are working with multiple parameters, the method call must have the same number of arguments as there are parameters, and the arguments must be passed in the same order.
 //You can also use a default parameter value, by using the equals sign(=).
 //If we call the method without an argument, it uses the default value ("Norway"):
@@ -1184,6 +1286,19 @@ static double PlusMethodDouble(double x, double y)
 //    Console.WriteLine("Double: " + myNum2);
 //}
 
+//Compiler Error CS0161:
+//'method'- not all code paths return a value
+//A method that returns a value must have a return statement in all code paths. For more information, see Methods.
+public static int Main()
+{
+    int i = 5;
+    if (i < 10)
+    {
+        return i; // Returns a value if condition is true
+    }
+    // No return statement here for other paths
+}
+
 //Instead of defining two methods that should do the same thing, it is better to overload one.
 //In the example below, we overload the PlusMethod method to work for both int and double:
 //static int PlusMethod(int x, int y)
@@ -1203,11 +1318,62 @@ static double PlusMethodDouble(double x, double y)
 //}
 //Note: Multiple methods can have the same name as long as the number and/or type of parameters are different.
 
+//Compiler Error CS0029:
+//Cannot implicitly convert type 'type' to 'type'
+//The compiler requires an explicit conversion. For example, you may need to cast an r-value to be the same type as an l-value. Or, you must provide conversion routines to support certain operator overloads.
+//Conversions must occur when assigning a variable of one type to a variable of a different type. When making an assignment between variables of different types, the compiler must convert the type on the right-hand side of the assignment operator to the type on the left-hand side of the assignment operator. Take the following the code:
+/*
+int i = 50;
+long lng = 100;
+i = lng;
+*/
 
+//Out parameter
+var variousNumbers = new int[] { 10, -8, 2, 12, -17 };
+int countOfNonPositiveNumbers;
+var onlyPositive = GetOnlyPositive(
+    numbers, out countOfNonPositiveNumbers);
 
+List<int> GetOnlyPositive(
+    int[] numbers, out int countOfNonPositive)
+{
+    var result = new List<int>();
+    countOfNonPositive = 0;
+    foreach (var number in numbers)
+    {
+        if (number > 0)
+        {
+            result.Add(number);
+        }
+        else
+        {
+            ++countOfNonPositive;
+        }
+    }
+    return result;
+}
+//OR//
+bool isParsed = int.TryParse(
+    userInput, out int userInputParsedToInt);
+if (isParsed)
+{
+    Console.WriteLine(
+        "Parsed successfully, the result is: " + userInputParsedToInt);
+}
+else
+{
+    Console.WriteLine(
+        $"Could not parse '{userInput}' to int");
+}
 
-
-
+//System.FormatException: 
+//Format specifier was invalid.
+//The exception that is thrown when the format of an argument is invalid, or when a composite format string is not well formed.
+public static void Main()
+{
+    decimal price = 169.32m;
+    Console.WriteLine("The cost is {0:Q2}.", price);
+}
 
 
 
@@ -1261,7 +1427,10 @@ public class Exercise1
 }
 
 //Compiler Error CS8803:
+//Top-level statements replace the explicit Main method as the program's entry point.
 //Top-level statements must precede namespace and type declarations.
+//Place all top - level statements before any namespace or type declarations in the file, because the compiler requires top-level statements to appear first.
+//Consider the following code snippet that triggers the CS8803 error:
 /*
 public record Person
 {
@@ -1306,3 +1475,14 @@ public class Exercise3
         return result;
     }
 }
+
+public class Exercise4
+{
+    public static int AbsoluteOfSum(int num1, int num2)
+    {
+        return Math.Abs(num1 + num2);
+    }
+}
+
+Console.WriteLine("Press any key to close");
+Console.ReadKey();
