@@ -744,7 +744,7 @@ while (k < 5)
 //This loop will execute the code block once, before checking if the condition is true, then it will repeat the loop as long as the condition is true.
 do
 {
-  // code block to be executed
+    // code block to be executed
 }
 while (condition);
 
@@ -770,7 +770,7 @@ while (g < 5);
 //Statement 3 is executed (every time) after the code block has been executed.
 
 //The example below will print the numbers 0 to 4:
-for (int f = 0; f < 5; f++) 
+for (int f = 0; f < 5; f++)
 {
     Console.WriteLine(f);
 }
@@ -779,7 +779,7 @@ for (int f = 0; f < 5; f++)
 //Statement 3 increases a value (i++) each time the code block in the loop has been executed.
 
 //This example will only print even values between 0 and 10:
-for (int t = 0; t <= 10; t = t + 2) 
+for (int t = 0; t <= 10; t = t + 2)
 {
     Console.WriteLine(t);
 }
@@ -787,7 +787,7 @@ for (int t = 0; t <= 10; t = t + 2)
 //It is also possible to place a loop inside another loop. This is called a nested loop.
 //The "inner loop" will be executed one time for each iteration of the "outer loop":
 // Outer loop
-for (int r = 1; r <= 2; ++r) 
+for (int r = 1; r <= 2; ++r)
 {
     Console.WriteLine("Outer: " + r);  // Executes 2 times
 
@@ -805,7 +805,7 @@ for (int r = 1; r <= 2; ++r)
 //  // code block to be executed
 //}
 //The following example outputs all elements in the cars array, using a foreach loop:
-string[] cars = { "Volvo", "BMW", "Ford", "Mazda"};
+string[] cars = { "Volvo", "BMW", "Ford", "Mazda" };
 foreach (string c in cars)
 {
     Console.WriteLine(c);
@@ -815,7 +815,7 @@ foreach (string c in cars)
 //You have already seen the break statement used in an earlier chapter of this tutorial. It was used to "jump out" of a switch statement.
 //The break statement can also be used to jump out of a loop.
 //This example jumps out of the loop when i is equal to 4:
-for (int b = 0; b < 10; b++) 
+for (int b = 0; b < 10; b++)
 {
     if (b == 4)
     {
@@ -826,7 +826,7 @@ for (int b = 0; b < 10; b++)
 
 //The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
 //This example skips the value of 4:
-for (int c = 0; c < 10; c++) 
+for (int c = 0; c < 10; c++)
 {
     if (c == 4)
     {
@@ -872,7 +872,7 @@ int[] myNums = { 10, 20, 30, 40 };
 //You access an array element by referring to the index number.
 
 //This statement accesses the value of the first element in cars:
-string[] cars2 = { "Volvo", "BMW", "Ford", "Mazda"};
+string[] cars2 = { "Volvo", "BMW", "Ford", "Mazda" };
 Console.WriteLine(cars2[0]);
 // Outputs Volvo
 //Note: Array indexes start with 0: [0] is the first element. [1] is the second element, etc.
@@ -880,13 +880,13 @@ Console.WriteLine(cars2[0]);
 //To change the value of a specific element, refer to the index number:
 cars[0] = "Opel";
 
-string[] cars3 = { "Volvo", "BMW", "Ford", "Mazda"};
+string[] cars3 = { "Volvo", "BMW", "Ford", "Mazda" };
 cars[0] = "Opel";
 Console.WriteLine(cars3[0]);
 // Now outputs Opel instead of Volvo
 
 //To find out how many elements an array has, use the Length property:
-string[] cars4 = { "Volvo", "BMW", "Ford", "Mazda"};
+string[] cars4 = { "Volvo", "BMW", "Ford", "Mazda" };
 Console.WriteLine(cars.Length);
 // Outputs 4
 
@@ -957,7 +957,7 @@ class MyClass
 
 //You can loop through the array elements with the for loop, and use the Length property to specify how many times the loop should run.
 //The following example outputs all elements in the cars array:
-string[] cars10 = { "Volvo", "BMW", "Ford", "Mazda"};
+string[] cars10 = { "Volvo", "BMW", "Ford", "Mazda" };
 for (int i1 = 0; i1 < cars10.Length; i1++)
 {
     Console.WriteLine(cars[i1]);
@@ -969,7 +969,7 @@ for (int i1 = 0; i1 < cars10.Length; i1++)
 //  // code block to be executed
 //}
 //The following example outputs all elements in the cars array, using a foreach loop:
-string[] cars11 = { "Volvo", "BMW", "Ford", "Mazda"};
+string[] cars11 = { "Volvo", "BMW", "Ford", "Mazda" };
 foreach (string i2 in cars)
 {
     Console.WriteLine(i2);
@@ -979,11 +979,11 @@ foreach (string i2 in cars)
 
 //There are many array methods available, for example Sort(), which sorts an array alphabetically or in an ascending order:
 // Sort a string
-string[] cars12 = { "Volvo", "BMW", "Ford", "Mazda"};
+string[] cars12 = { "Volvo", "BMW", "Ford", "Mazda" };
 Array.Sort(cars12);
 foreach (string i3 in cars12)
 {
-Console.WriteLine(i3);
+    Console.WriteLine(i3);
 }
 
 // Sort an int
@@ -991,7 +991,7 @@ int[] myNumbers = { 5, 1, 8, 9 };
 Array.Sort(myNumbers);
 foreach (int i4 in myNumbers)
 {
-Console.WriteLine(i4);
+    Console.WriteLine(i4);
 }
 
 //Other useful array methods, such as Min, Max, and Sum, can be found in the System.Linq namespace:
@@ -1036,6 +1036,8 @@ var letters2 = new char[,]
 
 var height = letters.GetLength(0);
 var width = letters.GetLength(1);
+Console.WriteLine($"Height is {height}.");
+Console.WriteLine($"Width is {width}");
 
 for (int i = 0; i < height; i++)
 {
@@ -1066,12 +1068,12 @@ Console.WriteLine(numbers2[0, 0]); // Outputs 5 instead of 1
 int[,] numbers3 = { { 1, 4, 2 }, { 3, 6, 8 } };
 foreach (int i5 in numbers)
 {
-  Console.WriteLine(i5);
+    Console.WriteLine(i5);
 }
 
 //You can also use a for loop. For multidimensional arrays, you need one loop for each of the array's dimensions.
 //Also note that we have to use GetLength() instead of Length to specify how many times the loop should run:
-int[,] numbers4 = { { 1, 4, 2}, { 3, 6, 8} };
+int[,] numbers4 = { { 1, 4, 2 }, { 3, 6, 8 } };
 
 for (int i6 = 0; i6 < numbers4.GetLength(0); i6++)
 {
@@ -1333,6 +1335,8 @@ var variousNumbers = new int[] { 10, -8, 2, 12, -17 };
 int countOfNonPositiveNumbers;
 var onlyPositive = GetOnlyPositive(
     numbers, out countOfNonPositiveNumbers);
+//The out keyword causes arguments to be passed by reference.
+//It also allows a method to return multiple values.
 
 List<int> GetOnlyPositive(
     int[] numbers, out int countOfNonPositive)
@@ -1355,6 +1359,9 @@ List<int> GetOnlyPositive(
 //OR//
 bool isParsed = int.TryParse(
     userInput, out int userInputParsedToInt);
+//The TryParse method attempts to parse a string into an integer.
+//It returns true if the parsing is successful, and false if it fails. The parsed integer value is stored in the out parameter userInputParsedToInt if the parsing is successful.
+//If the parsing fails, userInputParsedToInt will be set to 0.
 if (isParsed)
 {
     Console.WriteLine(
@@ -1375,26 +1382,286 @@ public static void Main()
     Console.WriteLine("The cost is {0:Q2}.", price);
 }
 
+//Switch expressions were introduced in C# 8.0 and provide a more concise syntax for performing pattern matching and returning values based on conditions.
+char ConvertPointsToGrade(int points)
+{
+    switch (points)
+    {
+        case 10:
+        case 9:
+            return 'A';
+        case 8:
+        case 7:
+        case 6:
+            return 'B';
+        case 5:
+        case 4:
+        case 3:
+            return 'C';
+        case 2:
+        case 1:
+            return 'D';
+        case 0:
+            return 'E';
+        default:
+            return '!';
+    }
+}
+//VS//
+char ConvertPointsToGrade(int points) => points switch
+{
+    10 or 9 => 'A',
+    8 or 7 or 6 => 'B',
+    5 or 4 or 3 => 'C',
+    2 or 1 => 'D',
+    0 => 'E',
+    _ => '!',
+};
+//pattern matching is a powerful feature that allows us to check a value against specific patterns rather than just exact matches.//
+char ConvertPointsToGrade(int points) => points switch
+{
+    >= 90 => 'A',
+    >= 80 => 'B',
+    >= 50 => 'C',
+    _ => 'D',//anything below 50 gets a D
+};
+
+//WHILE LOOP PRACTICE//
+var number = 0;
+
+while (number < 10)//the loop will continue to run as long as the condition is true
+{
+    //number = number + 1;
+    number += 1; //we can also use -=, *=, /=, etc. for other operations
+    number++; //-- decrements the value by 1, ++ increments the value by 1
+    Console.WriteLine("Number is: " + number);
+}
+Console.WriteLine("The loop is finished.");
+
+Console.WriteLine("Enter a word: ");
+var userInput = Console.ReadLine();
+
+while (userInput.Length < 15)
+{
+    userInput += 'a';
+    userInput = Console.ReadLine();
+}
+
+//FOR LOOP PRACTICE//
+for (int i = 0; i < 5; i++)//initialization; condition; increment/decrement
+{
+    Console.WriteLine("Hello");
+}
+for (int i = 0; i < 5; ++i)//initialization; condition; increment/decrement
+{
+    Console.WriteLine($"Loop run: {i}");
+}
+for (int i = 10; i > 5; i--)//initialization; condition; increment/decrement
+{
+    Console.WriteLine($"Loop run: {i}");
+}
+Console.WriteLine("The loop is finished.");
+//i++(Postfix): The variable comes first, so the value is used first, then it increments.
+//++i (Prefix): The++ comes first, so it increments first, then the value is used.
+
+int userNumber;
+do
+{
+    Console.WriteLine("Enter a number larger than 10: ");
+    var userInput = Console.ReadLine();
+    userNumber = int.Parse(userInput);
+} while (userNumber < 10);
 
 
+//the break keyword immediately stops the execution of a loop
+for (var i = 0; i < 100; i++)
+{
+    Console.WriteLine($"i is {i}.");
+    if (i > 25)
+    {
+        break;
+    }
+}
+
+//the continue keyword finishes the current iteration early & moves on to the next one
+for (var i = 0; i < 20; i++)
+{
+    if (i % 3 != 0)
+    {
+        continue;
+    }
+    Console.WriteLine($"is: {i}.");
+}
 
 
+//NESTED LOOPS PRACTICE//
+for (int i = 0; i < 4; i++)
+{
+    for (int j = 0; j < 3; j++)
+    {
+        Console.WriteLine($"i is: {i} & j is: {j}.");
+
+    }
+}
+
+//ARRAYS PRACTICE//
+int[] numbers = new int[3]; //with no defined elements this array currently holds 3 zero's(the default for int)
+Console.WriteLine($"Element  at index 0 is: {numbers[0]}");
+Console.WriteLine($"Element  at index 1 is: {numbers[1]}");
+Console.WriteLine($"Element  at index 2 is: {numbers[2]}");
+//initializing elements of the array with user-defined values
+numbers[0] = 1;
+numbers[1] = 2;
+numbers[2] = 3;
+numbers[20] = 7;// System.IndexOutOfRangeException
+
+//we can also modify existing elements via their index
+numbers[1] = 3;
+
+int[] numbers = new int[5];
+
+numbers[0] = 5;
+numbers[1] = 6;
+numbers[2] = 7;
+numbers[3] = 17;
+numbers[4] = 22;
+var firstFromEnd = numbers[^1];
+var secondFromEnd = numbers[^2];
+//var firstFromEnd = numbers[numbers.Length - 1];
+//var secondFromEnd = numbers[numbers.Length - 2];
+Console.WriteLine("First from end: " + firstFromEnd);
+Console.WriteLine("Second from end: " + secondFromEnd);
+
+int[] numbers = new int[] { 2, 3, 4, 5, 6, 19 };
+
+for (var i = 0; i < numbers.Length; i++)
+{
+    sumOfNumbers += numbers[i];
+}
+
+//MULTI-DIMENSIONAL ARRAYS PRACTICE//
+char[,] letters = new char[2, 3];
+
+letters[0, 0] = 'A';
+letters[0, 1] = 'B';
+letters[0, 2] = 'C';
+letters[1, 0] = 'D';
+letters[1, 1] = 'E';
+letters[1, 2] = 'F';
+
+var height = letters.GetLength(0);
+var width = letters.GetLength(1);
+Console.WriteLine($"Height is: {height}.");
+Console.WriteLine($"Width is: {width}.");
+for (var i = 0; i < height; i++)
+{
+    Console.WriteLine($"i(outer loop/row) is: {i}");
+    for (var j = 0; j < width; j++)
+    {
+        Console.WriteLine($"j(inner loop/column) is: {j}");
+        Console.WriteLine($"Element at row {i} and column {j} is: {letters[i, j]}.");
+    }
+}
+
+var letters2 = new char[,]
+{
+    {'A', 'B','C' },
+    {'D', 'E','F' },
+};
 
 
+var words = new[] { "one", "two", "three" };
+for (var i = 0; i < words.Length; i++)
+{
+    Console.WriteLine($"Element at index {i} is: {words[i]}.");
+}
+//VS
+foreach (var word in words)
+{
+    Console.WriteLine($"Element is: {word}.");
+}
+
+//LISTS PRACTICE//
+List<string> words = new List<string>();
+Console.WriteLine($"Count of elements is: {words.Count}");
+
+words.Add("Hello");
+Console.WriteLine($"Count of elements is: {words.Count}");
+
+var words = new List<string>
+{
+    "one",
+    "two",
+};
+
+foreach (var word in words)
+{
+    Console.WriteLine($"Element is: {word}.");
+}
+//OR
+for (var i = 0; i < words.Count; i++)
+{
+    Console.WriteLine($"Element at index {i} is: {words[i]}.");
+}
+words[0] = "uno";
+words[1] = "dos";
+words[2] = "tres";//this will cause an IndexOutOfRangeException, as the list currently only has 2 elements (at index 0 and 1)
+
+Console.WriteLine("Removing an item");
+words.Remove("thirty");//the Remove method returns false if the item to be removed is not found in the list
+
+words.AddRange(new[] { "three", "four", "five" });//AddRange adds the elements of the specified collection to the end of the list
+words.IndexOf("three");//IndexOf returns the zero-based index of the first occurrence of a specific object in the list, or -1 if it is not found
+words.Contains("three");//Contains returns true if the list contains a specific element, otherwise false
+words.Clear();//Clear removes all elements from the list
+
+//THE OUT PARAMETER PRACTICE//
+var numbers = new[] { 10, -8, 2, 12, -17 };
+int nonPositiveCount;
+var onlyPositive = GetOnlyPositive(numbers, out countOfNonPositive);
+foreach (var positiveNumber in onlyPositive)
+{
+    Console.WriteLine($"Positive number: {positiveNumber}.");
+}
 
 
+List<int> GetOnlyPositive(int[] numbers, out int countOfNonPositive)
+{
+    countOfNonPositive = 0;
+    //Compiler Error CS0177:
+    //The out parameter 'parameter' must be assigned to before control leaves the current method
+    //A parameter marked with the out keyword was not assigned a value in the method body.
+
+    var result = new List<int>();
+    foreach (var number in numbers)
+    {
+        if (number > 0)
+        {
+            result.Add(number);
+        }
+        else
+        {
+            countOfNonPositive++;
+        }
+    }
+    return result;
+}
 
 
+//TRY PARSE PRACTICE//
+Console.WriteLine("Enter a number: ");
+var userInput = Console.ReadLine();
+int asNumber = int.Parse(userInput);//if the user input cannot be parsed to an int, this will throw a FormatException
 
-
-
-
-
-
-
-
-
-
+bool isParsingSuccessful = int.TryParse(userInput, out int userInputParsedToInt);
+if (isParsingSuccessful)
+{
+    Console.WriteLine($"Parsed successfully, the result is: {userInputParsedToInt}.");
+}
+else
+{
+    Console.WriteLine($"Could not parse '{userInput}' to int.");
+}
 
 
 
@@ -1481,6 +1748,174 @@ public class Exercise4
     public static int AbsoluteOfSum(int num1, int num2)
     {
         return Math.Abs(num1 + num2);
+    }
+}
+
+public class Exercise5
+{
+    public static string FormatDate(int year, int month, int day)
+    {
+        return $"{year}/{month}/{day}";
+    }
+}
+
+public class Exercise6
+{
+    public static string DescribeDay(int dayNumber)
+    {
+        switch (dayNumber)
+        {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                return "Working day";
+            case 6:
+            case 7:
+                return "Weekend";
+            default:
+                return "Invalid day number";
+        }
+    }
+}
+
+public class Exercise7
+{
+    public static int CalculateSumOfNumbersBetween(int firstNumber, int lastNumber)
+    {
+        int currentNumber = firstNumber;
+        int sum = 0;
+        while (currentNumber <= lastNumber)
+        {
+            sum += currentNumber;
+            currentNumber++;
+        }
+        return sum;
+        Console.ReadLine();
+    }
+}
+
+public class Exercise8
+{
+    public static string RepeatCharacter(char character, int targetLength)
+    {
+        string result = "";
+        int count = 0;
+        do
+        {
+            result += character;
+            count++;
+        }
+        while (count < targetLength);
+        return result;
+    }
+}
+
+public class Exercise9
+{
+    public static int Factorial(int number)
+    {
+        int result = 1;
+        for (int i = 1; i <= number; i++)
+        {
+            result *= i;
+            Console.WriteLine($"N! = {result}.");
+        }
+        return result;
+    }
+}
+
+public class Exercise10
+{
+    public static string BuildHelloString()
+    {
+        char[] letters = new char[] { 'h', 'e', 'l', 'l', 'o' };
+        var result = "";
+        for (int i = 0; i < letters.Length; ++i)
+        {
+            result += letters[i];
+        }
+        return result;
+    }
+}
+
+public class Exercise11
+{
+    public static int FindMax(int[,] numbers)
+    {
+        int rows = numbers.GetLength(0);
+        int columns = numbers.GetLength(1);
+
+        if (rows == 0 || columns == 0)
+        {
+            return -1;
+        }
+
+        var max = numbers[0, 0];
+
+        for (var i = 0; i < rows; i++)
+        {
+            for (var j = 0; j < columns; j++)
+            {
+                Console.WriteLine($"i/row is: {i} | j/column is: {j}.");
+                if (numbers[i, j] > max)
+                {
+                    max = numbers[i, j];
+                }
+            }
+        }
+
+        return max;
+    }
+}
+
+public class Exercise12
+{
+    public static bool IsAnyWordLongerThan(int length, string[] words)
+    {
+        foreach (var word in words)
+        {
+            if (word.Length > length)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+public class Exercise13
+{
+    public List<string> GetOnlyUpperCaseWords(List<string> words)
+    {
+        List<string> result = new List<string>();
+        foreach (var word in words)
+        {
+            if (result.Contains(word))
+            {
+                continue;
+            }
+            bool isAllUpper = true;
+
+            if (word.Length == 0)
+            {
+                isAllUpper = false;
+            }
+            foreach (var letter in word)
+            {
+                if (!char.IsUpper(letter))
+                {
+                    isAllUpper = false;
+                    break;
+                }
+            }
+            if (isAllUpper)
+            {
+                result.Add(word);
+            }
+        }
+        return result;
     }
 }
 
