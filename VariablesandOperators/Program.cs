@@ -1722,7 +1722,7 @@ public class Exercise2
 }
 public class Exercise3
 {
-    public static string IsElseConditionalStatement()
+    public static string IfElseConditionalStatement()
     {
         int number = 0;
         string result;
@@ -1842,6 +1842,22 @@ public class Exercise10
 
 public class Exercise11
 {
+    public static bool IsWordPresentInCollection(string[] words, string wordToBeChecked)
+    {
+        for (int i = 0; i < words.Length; i++)
+        {
+            if (words[i] == wordToBeChecked)
+            {
+                i++;
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+public class Exercise12
+{
     public static int FindMax(int[,] numbers)
     {
         int rows = numbers.GetLength(0);
@@ -1870,7 +1886,7 @@ public class Exercise11
     }
 }
 
-public class Exercise12
+public class Exercise13
 {
     public static bool IsAnyWordLongerThan(int length, string[] words)
     {
@@ -1885,7 +1901,7 @@ public class Exercise12
     }
 }
 
-public class Exercise13
+public class Exercise14
 {
     public List<string> GetOnlyUpperCaseWords(List<string> words)
     {
