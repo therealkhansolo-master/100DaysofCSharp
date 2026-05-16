@@ -1,112 +1,180 @@
-﻿var internationalPizzaDay26 = new DateTime(2026, 5, 2);
-Console.WriteLine($"year is {internationalPizzaDay26.Year}");
-Console.WriteLine($"month is {internationalPizzaDay26.Month}");
-Console.WriteLine($"day is {internationalPizzaDay26.Day}");
-Console.WriteLine($"day of week is {internationalPizzaDay26.DayOfWeek}");
+﻿var internationalPizzaDay23 = new DateTime(2023, 2, 9);
+Console.WriteLine("Year is: " + internationalPizzaDay23.Year);
+Console.WriteLine("Month is: " + internationalPizzaDay23.Month);
+Console.WriteLine("Day is: " + internationalPizzaDay23.Day);
+Console.WriteLine("Day of the week is: " + internationalPizzaDay23.DayOfWeek);
+var internationalPizzaDay24 = internationalPizzaDay23.AddYears(1);
 
-var internationalPizzaDay27 = internationalPizzaDay26.AddYears(1);
-Console.WriteLine($"new year is {internationalPizzaDay27.Year}");
-Console.WriteLine($"new month is {internationalPizzaDay27.Month}");
-Console.WriteLine($"new day is {internationalPizzaDay27.Day}");
-Console.WriteLine($"new day of week is {internationalPizzaDay27.DayOfWeek}");
+var rectangle1 = new Rectangle(5, 10);
+var rectangle2 = new Rectangle(50, 100);
 
-var rectangle1 = new Rectangle(5, 10);// this will not compile because there is no constructor defined in the Rectangle class
-var rect1Area = new ShapesMeasurementsCalculator().CalculateArea(rectangle1);
-var rect1Perimeter = new ShapesMeasurementsCalculator().CalculatePerimeter(rectangle1);
-Console.WriteLine($"Width is {rectangle1.Width}");
-Console.WriteLine($"Height is {rectangle1.Height}");
-Console.WriteLine($"Area is {rect1Area}");
-Console.WriteLine($"Perimeter is {rect1Perimeter}");
-rectangle1.Width = -3;//PROBLEMATIC; caused by the Public access modifier
+Console.WriteLine(
+    "Count of Rectangle objects is " + Rectangle.CountOfInstances);
 
-var rectangle2 = new Rectangle(10, 20);
-var rect2Area = new ShapesMeasurementsCalculator().CalculateArea(rectangle2);
-var rect2Perimeter = new ShapesMeasurementsCalculator().CalculatePerimeter(rectangle2);
-Console.WriteLine($"Width is {rectangle2.Width}");
-Console.WriteLine($"Height is {rectangle2.Height}");
-Console.WriteLine($"Area is {rect2Area}");
-Console.WriteLine($"Perimeter is {rect2Perimeter}");
+Console.WriteLine("Width is " + rectangle1.Width);
+Console.WriteLine("Height is " + rectangle1.GetHeight());
+Console.WriteLine("Area is " + rectangle1.CalculateArea());
+Console.WriteLine("Circumference is " + rectangle1.CalculateCircumference());
 
-var medicalAppointment = new MedicalAppointment("Bruce Banner", new DateTime(2024, 7, 15));
+Console.WriteLine($"1 + 2 is {Calculator.Add(1, 2)}");
+Console.WriteLine($"1 - 2 is {Calculator.Subtract(1, 2)}");
+Console.WriteLine($"1 * 2 is {Calculator.Multiply(1, 2)}");
+
+var appointmentTwoWeeksFromNow = new MedicalAppointment("Bob Smith", 14);
+var appointmentOneWeekFromNow = new MedicalAppointment("Margaret Smith");
+var appointmentUnknownPatient = new MedicalAppointment();
+var nameOnly = new MedicalAppointment("Name only");
+
+//Stopwatch type
+Stopwatch stopwatch = Stopwatch.StartNew();
+//code to be measured
+stopwatch.Stop();
+Console.WriteLine("Elapsed time in ms: " + stopwatch.ElapsedMilliseconds);
 
 Console.ReadKey();
 
+static class Calculator
+{
+    public static int Add(int a, int b) => a + b;
+    public static int Subtract(int a, int b) => a - b;
+    public static int Multiply(int a, int b) => a * b;
+}
+
 class Rectangle
 {
-    public int Width;
-    public int Height;
-    //private int _width;
-    //private int _height;
+    //const fields are implicitly static
+    public const int NumberOfSides = 4;
+
+    //a static property, belonging to the class as a whole
+    public static int CountOfInstances { get; private set; }
+
+    //a static field
+    private static DateTime _firstUsed;
+
+    //a static constructor
+    static Rectangle()
+    {
+        _firstUsed = DateTime.Now;
+    }
 
     public Rectangle(int width, int height)
     {
-        int defaultValueIfNonPositive = 1;
-        if (width <= 0)
+        Width = GetLengthOrDefault(width, nameof(Width));
+        _height = GetLengthOrDefault(height, nameof(_height));
+        ++CountOfInstances;
+    }
+
+    //readonly property - can only be set in the constructor
+    public int Width { get; }
+
+    //achieving a similar behavior as properties give with using methods
+    private int _height;
+    public int GetHeight() => _height;
+
+    public void SetHeight(int value)
+    {
+        if (value > 0)
         {
-            Console.WriteLine("Width must be a positive number.");
-            Width = defaultValueIfNonPositive;
+            _height = value;
         }
-        Width = width;
-        Height = height;
     }
 
-    public int CalculatePerimeter() => 2 * (Width + Height);
-}
-
-class ShapesMeasurementsCalculator
-{
-    //expression-bodied method
-    //public int CalculatePerimeter(Rectangle rectangle) => 2 * (rectangle.Width + rectangle.Height)
-    public int CalculatePerimeter(Rectangle rectangle)
+    private int GetLengthOrDefault(int length, string name)
     {
-        return 2 * (rectangle.Width + rectangle.Height);
+        const int defaultValueIfNonPositive = 1;
+        if (length <= 0)
+        {
+            Console.WriteLine($"{name} must be a positive number.");
+            return defaultValueIfNonPositive;
+        }
+        return length;
     }
 
-    public int CalculateArea(Rectangle rectangle)
-    {
-        return rectangle.Width * rectangle.Height;
-    }
+    //expression-bodied methods
+    //could not be made static as they use the state of an instance (width and height)
+    public int CalculateCircumference() => 2 * Width + 2 * _height;
+
+    public int CalculateArea() => Width * _height;
+
+    //a get-only, expression-bodied property
+    public string Description => $"A rectangle with width {Width} " +
+        $"and height {_height}";
+
+    //a static method, not using any state of an instance
+    public static string DescribeGenerally() =>
+        $"A plane figure with four straight sides and four right angles.";
+
+    //can be made static
+    public string NotUsingAnyState() => "abc";
 }
-
-class MedicalAppointmentPrinter();
 
 class MedicalAppointment
 {
     private string _patientName;
-    private DateTime _appointmentDate;
-    public MedicalAppointment(string patientName, DateTime appointmentDate)
+    private DateTime _date;
+
+    public MedicalAppointment(string patientName, DateTime date)
     {
         _patientName = patientName;
-        _appointmentDate = appointmentDate;
-    }
-    public MedicalAppointment(string patientName) : this(patientName, 7)
-    {
+        _date = date;
     }
 
-    public MedicalAppointment(string patientName, int daysFromNow)
+    //calling one constructor from another
+    //commented now, as the below constructor with optional parameters
+    //also allows to skip the second parameter
+    //public MedicalAppointment(string patientName) :
+    //    this(patientName, 7)
+    //{
+    //}
+
+    public MedicalAppointment(
+        string patientName = "Unknown", int daysFromNow = 7)
     {
         _patientName = patientName;
-        _appointmentDate = DateTime.Now.AddDays(daysFromNow);
+        _date = DateTime.Now.AddDays(daysFromNow);
     }
-    public void Reschedule(DateTime newDate)
+
+    public DateTime GetDate() => _date;
+
+    public void Reschedule(DateTime date)
     {
-        _appointmentDate = newDate;
+        _date = date;
+        var printer = new MedicalAppointmentPrinter();
+        printer.Print(this);
     }
+
     public void OverwriteMonthAndDay(int month, int day)
     {
-        _appointmentDate = new DateTime(_appointmentDate.Year, month, day);
+        _date = new DateTime(_date.Year, month, day);
     }
-    public void MovebyMonthsAndDays(int monthsToAdd, int daysToAdd)
+
+    public void MoveByMonthsAndDays(int monthsToAdd, int daysToAdd)
     {
-        _appointmentDate = new DateTime(_appointmentDate.Year, 
-            _appointmentDate.Month, 
-            _appointmentDate.Day)
-            .AddMonths(monthsToAdd)
-            .AddDays(daysToAdd);
+        _date = new DateTime(
+            _date.Year,
+            _date.Month + monthsToAdd,
+            _date.Day + daysToAdd);
     }
 }
 
+class MedicalAppointmentPrinter
+{
+    public void Print(MedicalAppointment medicalAppointment)
+    {
+        Console.WriteLine(
+            "Appointment will take place on " + medicalAppointment.GetDate());
+    }
+}
 
+//class someClass
+//{
+//    private int _someField;
+
+//    public static string AsString() => $"Value of field is {_someField}.";
+//    //the above will not compile, as static methods cannot access instance fields.
+//    //To make it work, we would need to make the field static as well,
+//    //but then it would be shared across all instances of the class, which might not be the intended behavior.
+//}
 
 
 
@@ -220,4 +288,93 @@ public class Dog
 
         return $"This dog is named {_name}, it's a {_breed}, and it weighs {_weight} kilograms, so it's a {size} dog.";
     }
+}
+
+//EXERCISE 18
+public class Order
+{
+    public string Item { get; }
+
+    private DateTime _date;
+    public DateTime Date
+    {
+        get
+        {
+            return _date;
+        }
+        set
+        {
+            if (value.Year == DateTime.Now.Year)
+            {
+                _date = value;
+            }
+        }
+    }
+
+    public Order(string item, DateTime date)
+    {
+        Item = item;
+        Date = date;
+    }
+}
+
+
+//EXERCISE 19
+public class DailyAccountState
+{
+    public int InitialState { get; }
+
+    public int SumOfOperations { get; }
+
+    public int EndOfDayState => InitialState + SumOfOperations;
+
+    public DailyAccountState(
+        int initialState,
+        int sumOfOperations)
+    {
+        InitialState = initialState;
+        SumOfOperations = sumOfOperations;
+    }
+
+    public string Report() => $"Day: {DateTime.Now.Day}, month: {DateTime.Now.Month}, year: {DateTime.Now.Year}, initial state: {InitialState}, end of day state: {EndOfDayState}";
+}
+
+//EXERCISE 20
+public static class NumberToDayOfWeekTranslator
+{
+    public static string Translate(int dayOfWeek)
+    {
+        switch (dayOfWeek)
+        {
+            case 1: return "Monday";
+            case 2: return "Tuesday";
+            case 3: return "Wednesday";
+            case 4: return "Thursday";
+            case 5: return "Friday";
+            case 6: return "Saturday";
+            case 7: return "Sunday";
+            default: return "Invalid day of the week";
+        }
+    }
+}
+
+//EXERCISE 21
+public static class StringsTransformator
+{
+    public static string TransformSeparators(
+        string input,
+        string originalSeparator,
+        string targetSeparator)
+    {
+        string[] pieces = input.Split(originalSeparator);
+        string result = string.Join(targetSeparator, pieces);
+        return result;
+    }
+}
+    /*
+    public static string TransformSeparators(string input, string originalSeparator, string targetSeparator)
+    {
+        return string.Join(targetSeparator, input.Split(originalSeparator));
+    }
+    */
 }
